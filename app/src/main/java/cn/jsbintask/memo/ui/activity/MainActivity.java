@@ -123,6 +123,7 @@ public class MainActivity extends BaseActivity implements BaseHandler.HandlerRes
                     editor.putBoolean("daka",true);
                     editor.apply();
                     Toast.makeText(MainActivity.this,"打卡成功",Toast.LENGTH_LONG).show();
+                    fab_main.setText("已经\n打卡");
 
                 }
             }
