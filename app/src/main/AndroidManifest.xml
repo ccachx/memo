@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="cn.jsbintask.memo">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.jsbintask.memo">
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".MemoApplication"
@@ -18,23 +22,19 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.activity.LoginActivity"
+            android:label="登录"></activity>
+        <activity
             android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask">
-
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity
             android:name=".ui.activity.EventDetailActivity"
-            android:theme="@style/NoActionBarTheme"/>
-
-        <!-- <service android:name=".service.ClockService" /> -->
-
+            android:theme="@style/NoActionBarTheme" /> <!-- <service android:name=".service.ClockService" /> -->
         <activity
             android:name=".ui.activity.ClockActivity"
             android:launchMode="singleTask"
-            android:theme="@style/FullScreen"/>
-
-        <activity
-            android:name=".ui.activity.WelcomeActivity">
+            android:theme="@style/FullScreen" />
+        <activity android:name=".ui.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,17 +44,14 @@
 
         <receiver android:name=".receiver.ClockReceiver">
             <intent-filter android:priority="100">
-                <action android:name="com.liuzhengwei.memo.action.CLOCK_RECEIVER"/>
+                <action android:name="com.liuzhengwei.memo.action.CLOCK_RECEIVER" />
             </intent-filter>
         </receiver>
 
         <service
             android:name=".service.ClockService"
             android:enabled="true"
-            android:exported="true"/>
-
-
+            android:exported="true" />
     </application>
-
 
 </manifest>

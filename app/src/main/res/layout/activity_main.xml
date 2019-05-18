@@ -35,4 +35,19 @@
         android:layout_marginTop="6dp">
 
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:gravity="center"
+        android:background="@drawable/ic_daka"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:padding="16dp"
+        android:text="点我\n打卡"
+        android:id="@+id/fab_main"
+        android:src="@drawable/ic_add_menu2"
+        android:layout_margin="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
 </RelativeLayout>

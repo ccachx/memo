@@ -36,7 +36,7 @@ public class WelcomeActivity extends BaseActivity {
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
                 Intent mainIntent = new Intent(WelcomeActivity.this,
-                        MainActivity.class);
+                        LoginActivity.class);
                 startActivity(mainIntent);
                 finish();
             }

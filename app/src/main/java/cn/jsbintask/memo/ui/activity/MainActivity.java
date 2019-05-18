@@ -3,8 +3,10 @@ package cn.jsbintask.memo.ui.activity;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -38,6 +42,8 @@ public class MainActivity extends BaseActivity implements BaseHandler.HandlerRes
     RecyclerView mRecyclerView;
     @BindView(R.id.search_view)
     SearchView mSearchView;
+    @BindView(R.id.fab_main)
+    TextView fab_main;
     private EventRecyclerViewAdapter mAdapter;
     private EventManager mEventManger = EventManager.getInstance();
     private ClockManager mClockManager = ClockManager.getInstance();
@@ -97,6 +103,31 @@ public class MainActivity extends BaseActivity implements BaseHandler.HandlerRes
 
     @Override
     protected void setListener() {
+
+        if (getSharedPreferences("memo", MODE_PRIVATE).getBoolean("daka",false)){
+            fab_main.setText("已经\n打卡");
+        }
+
+
+        fab_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final SharedPreferences sp = getSharedPreferences("memo", MODE_PRIVATE);
+                final boolean b = sp.getBoolean("daka",false);
+
+                if (b){
+                    Toast.makeText(MainActivity.this,"已经过打卡",Toast.LENGTH_LONG).show();
+
+                }else {
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putBoolean("daka",true);
+                    editor.apply();
+                    Toast.makeText(MainActivity.this,"打卡成功",Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
        mAdapter.setOnItemClickListener(mOnItemClickListener);
        mSearchView.setOnQueryTextListener(mQueryListener);
     }
